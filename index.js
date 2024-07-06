@@ -11,6 +11,12 @@ inquirer
     const userURL=answers.userURL;
     var qr_png = qr.image(userURL);
     qr_png.pipe(fs.createWriteStream('qr_image.png'));
+
+    //create txt file to store user entered url
+    fs.writeFile('userURL.txt', userURL, (err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      }); 
   })
   .catch((error) => {
     if (error.isTtyError) {
